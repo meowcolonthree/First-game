@@ -364,7 +364,7 @@ launch = 1000
 rotdegree = 45.0
 
 [node name="Launcher2" parent="Launchers" unique_id=373807895 instance=ExtResource("12_2vma4")]
-position = Vector2(673, 8)
+position = Vector2(680, 6)
 launch = 875
 
 [node name="Plain Text" type="Node" parent="." unique_id=262292838]

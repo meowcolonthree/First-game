@@ -32,10 +32,10 @@ collision_mask = 2
 position = Vector2(-9.536743e-07, -2)
 shape = SubResource("RectangleShape2D_uvje1")
 
-[node name="Second Area" type="Area2D" parent="." unique_id=308708557]
+[node name="Second Area" type="Area2D" parent="Launch Area" unique_id=308708557]
 collision_mask = 2
 
-[node name="Second Area Coll" type="CollisionShape2D" parent="Second Area" unique_id=550704961]
+[node name="Second Area Coll" type="CollisionShape2D" parent="Launch Area/Second Area" unique_id=550704961]
 position = Vector2(3.5, -115)
 shape = SubResource("RectangleShape2D_ndnwk")
 
@@ -43,6 +43,6 @@ shape = SubResource("RectangleShape2D_ndnwk")
 
 [connection signal="body_entered" from="Launch Area" to="." method="_on_launch_area_body_entered"]
 [connection signal="body_entered" from="Launch Area" to="Launch Area" method="_on_body_entered"]
-[connection signal="body_entered" from="Second Area" to="." method="_on_second_area_body_entered"]
-[connection signal="body_exited" from="Second Area" to="." method="_on_second_area_body_exited"]
+[connection signal="body_entered" from="Launch Area/Second Area" to="." method="_on_second_area_body_entered"]
+[connection signal="body_exited" from="Launch Area/Second Area" to="." method="_on_second_area_body_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
