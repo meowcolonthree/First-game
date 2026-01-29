@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://bnapf4750s4af"]
+
+[ext_resource type="Texture2D" uid="uid://un1kmh0dbmi4" path="res://Assets/sprites/platforms.png" id="1_w37im"]
+[ext_resource type="Script" uid="uid://bq5ab7g33tvny" path="res://Scripts/nonautoloads/launcher.gd" id="2_ndnwk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8k52w"]
+size = Vector2(32, 9.320051)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uvje1"]
+size = Vector2(36, 9.320051)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ndnwk"]
+size = Vector2(57, 240)
+
+[node name="Launcher" type="CharacterBody2D" unique_id=373807895]
+script = ExtResource("2_ndnwk")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1550020191]
+texture = ExtResource("1_w37im")
+region_enabled = true
+region_rect = Rect2(15, 48, 33, 9)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1032443809]
+position = Vector2(0, 0.17136276)
+shape = SubResource("RectangleShape2D_8k52w")
+one_way_collision = true
+
+[node name="Launch Area" type="Area2D" parent="." unique_id=1616969203]
+collision_mask = 2
+
+[node name="Launch Coll" type="CollisionShape2D" parent="Launch Area" unique_id=2019716829]
+position = Vector2(-9.536743e-07, -2)
+shape = SubResource("RectangleShape2D_uvje1")
+
+[node name="Second Area" type="Area2D" parent="." unique_id=308708557]
+collision_mask = 2
+
+[node name="Second Area Coll" type="CollisionShape2D" parent="Second Area" unique_id=550704961]
+position = Vector2(3.5, -115)
+shape = SubResource("RectangleShape2D_ndnwk")
+
+[node name="Timer" type="Timer" parent="." unique_id=1078302731]
+
+[connection signal="body_entered" from="Launch Area" to="." method="_on_launch_area_body_entered"]
+[connection signal="body_entered" from="Launch Area" to="Launch Area" method="_on_body_entered"]
+[connection signal="body_entered" from="Second Area" to="." method="_on_second_area_body_entered"]
+[connection signal="body_exited" from="Second Area" to="." method="_on_second_area_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

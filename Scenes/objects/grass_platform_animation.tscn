@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://c4fuxtebtoopk"]
+
+[ext_resource type="Texture2D" uid="uid://un1kmh0dbmi4" path="res://Assets/sprites/platforms.png" id="1_sa7ah"]
+[ext_resource type="Script" uid="uid://rui7p7hcjv1q" path="res://Scripts/nonautoloads/secret_platform.gd" id="2_50ta6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fh7c0"]
+size = Vector2(32, 9.320051)
+
+[node name="GrassPlatformStill" type="AnimatableBody2D" unique_id=1660544315]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1866900598]
+position = Vector2(0, 0.36293364)
+shape = SubResource("RectangleShape2D_fh7c0")
+one_way_collision = true
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1114680176]
+texture = ExtResource("1_sa7ah")
+region_enabled = true
+region_rect = Rect2(16, 0, 32, 9)
+
+[node name="Area2D" type="Area2D" parent="." unique_id=2006098611]
+collision_mask = 2
+script = ExtResource("2_50ta6")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D" unique_id=2040536230]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_fh7c0")
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

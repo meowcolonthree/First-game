@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://b1ewgknvxs18s"]
+
+[ext_resource type="Script" uid="uid://cvl1sga0elxlc" path="res://Scripts/nonautoloads/2d_anim_move.gd" id="1_2pkgi"]
+[ext_resource type="Texture2D" uid="uid://un1kmh0dbmi4" path="res://Assets/sprites/platforms.png" id="1_iqhcq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s7mrn"]
+size = Vector2(32, 9.320051)
+
+[node name="Moving Platform" type="CharacterBody2D" unique_id=522808172]
+script = ExtResource("1_2pkgi")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=772312798]
+texture = ExtResource("1_iqhcq")
+region_enabled = true
+region_rect = Rect2(16, 0, 32, 9)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=374867967]
+position = Vector2(0, 0.17136276)
+shape = SubResource("RectangleShape2D_s7mrn")
+one_way_collision = true
+
+[node name="RayCastright" type="RayCast2D" parent="." unique_id=796712882]
+target_position = Vector2(17, 0)
+
+[node name="RayCastleft" type="RayCast2D" parent="." unique_id=110865466]
+target_position = Vector2(-17, 0)

@@ -1,0 +1,113 @@
+[gd_scene format=3 uid="uid://b3hjlgmu1lcvb"]
+
+[ext_resource type="Texture2D" uid="uid://cfsd4p82x83g" path="res://Assets/sprites/knight.png" id="1_v0iea"]
+
+[sub_resource type="GDScript" id="GDScript_v0iea"]
+resource_name = "player"
+script/source = "extends CharacterBody2D
+
+const SPEEDLOSS = 8 # loss of horizontal speed after bouncing
+const SPEED = 150  # speed of player
+const JUMP_VELOCITY = -350 # how high player jumps
+const COYOTE_TIME:float = 0.15 # coyote time leniancy
+var jump_available:bool = true # whether jump is available
+var slowx = true   # variable on whether to slow how fast horizontal speed decreases to at almost same speed as the pull of gravity on vertical speed (not very precise)
+var just_bounced = false # variable to say youve recently bounced
+
+func _physics_process(delta: float) -> void: # every frame:
+	if not is_on_floor(): # in in air:
+		if jump_available == true: #if you could have jumped while on the floor /// fell off ledge instead of jumping
+			get_tree().create_timer(COYOTE_TIME).timeout.connect(Coyote_timout) # create a timer for coyote time variable
+		velocity += get_gravity() * delta # while in air apply gravity
+	else: # if not in air
+		jump_available = true # allowed to jump
+		slowx = true # go back to normal horizontal speed decrease if it is decreased
+
+	if Input.is_action_just_pressed(\"jump\") and jump_available: # if jump button pressed while jump available:
+		velocity.y = JUMP_VELOCITY # set vertical speed to jump height
+		jump_available = false # stop from jumping again
+
+	var direction := Input.get_axis(\"left\", \"right\") # if left or right buttons pressed:
+	if direction: # if direction pressed:
+		if just_bounced == true: # if timer from launcher has not ended:
+			pass                 # block you from moving (stops player from cancelling all horizontal momentum accidentally after bouncing
+		else: # if you have not just bounced or the timer ended:
+			velocity.x = direction * SPEED # then move in the direction you pressed
+	elif slowx == false: # if prev mentioned slowx variable is false:
+		velocity.x = move_toward(velocity.x, 0, SPEEDLOSS) # decrease the horizontal speed lost
+	else: # if variable is true:
+		velocity.x = move_toward(velocity.x, 0, SPEED) # lose speed at normal rate
+
+	move_and_slide() # does the physics for when you bump into something
+
+func Coyote_timout(): # when coyote timer ends
+	jump_available = false # stop you from jumping, allows you to jump even if you time your jump wrong
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cvnsp"]
+atlas = ExtResource("1_v0iea")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6t5aa"]
+atlas = ExtResource("1_v0iea")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vgqql"]
+atlas = ExtResource("1_v0iea")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fkybt"]
+atlas = ExtResource("1_v0iea")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x3wgy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cvnsp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6t5aa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vgqql")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fkybt")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3smsa"]
+radius = 4.0
+
+[node name="Player" type="CharacterBody2D" unique_id=1905880579]
+collision_layer = 2
+script = SubResource("GDScript_v0iea")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=801011037]
+z_index = 5
+position = Vector2(0, -12)
+sprite_frames = SubResource("SpriteFrames_x3wgy")
+autoplay = "default"
+frame_progress = 0.3800412
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=598137743]
+visibility_layer = 4
+z_index = 9
+position = Vector2(0, -4)
+shape = SubResource("CircleShape2D_3smsa")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=564527113]
+visibility_layer = 4
+z_index = 9
+position = Vector2(0, -12)
+shape = SubResource("CircleShape2D_3smsa")
+
+[node name="Timer" type="Timer" parent="." unique_id=9043317]
+wait_time = 0.2
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

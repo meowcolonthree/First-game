@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://bkwxbqqnse031"]
+
+[ext_resource type="FontFile" uid="uid://jgv88f60q8tg" path="res://Assets/fonts/PixelOperator8.ttf" id="1_fmf1u"]
+
+[sub_resource type="GDScript" id="GDScript_xe0pu"]
+resource_name = "sign"
+script/source = "extends Area2D
+
+@onready var label: Label = $Label
+@export var initial_text: String = \"\"
+@export var read_text: String = \"\"
+var inside = false
+
+func _on_body_entered(_body: Node2D):
+	label.visible = true
+	label.text = initial_text
+	inside = true
+	
+func _input(_event):
+	if Input.is_action_just_pressed(\"Interact\") and inside == true:
+		label.text = read_text
+func _on_body_exited(_body: Node2D):
+	label.visible = false
+	inside = false
+"
+
+[node name="Sign" type="Area2D" unique_id=462426388]
+collision_mask = 2
+script = SubResource("GDScript_xe0pu")
+
+[node name="Label" type="Label" parent="." unique_id=220653179]
+offset_left = -72.0
+offset_top = -58.0
+offset_right = 72.0
+offset_bottom = -26.0
+theme_override_fonts/font = ExtResource("1_fmf1u")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
