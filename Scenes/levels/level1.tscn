@@ -378,10 +378,3 @@ theme_override_fonts/font = ExtResource("3_qnnww")
 text = "->"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="Label" type="Label" parent="." unique_id=1106490470]
-offset_left = -50.0
-offset_top = -173.0
-offset_right = -10.0
-offset_bottom = -150.0
-text = "Test"
