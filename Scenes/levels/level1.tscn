@@ -359,9 +359,10 @@ shape = SubResource("RectangleShape2D_h4fw4")
 [node name="Launchers" type="Node" parent="." unique_id=1078786138]
 
 [node name="Launcher" parent="Launchers" unique_id=1076933528 instance=ExtResource("12_2vma4")]
-position = Vector2(-107, -28)
+position = Vector2(-183, -13)
 launch = 1000
 rotdegree = 45.0
+bouncetime = 5.0
 
 [node name="Launcher2" parent="Launchers" unique_id=373807895 instance=ExtResource("12_2vma4")]
 position = Vector2(680, 6)

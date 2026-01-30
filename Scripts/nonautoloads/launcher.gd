@@ -8,6 +8,7 @@ extends CharacterBody2D
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @export var launch: int = 400    # take the inputted launch distance aka hypotenuse
 @export var rotdegree: float = 0 # take the inputted degree of rotation in degrees
+@export var bouncetime = 0.2
 var usable = true                # whether its usable
 var in_area = false              # whether youre in the larger area
 var rotrad = 0                   # the rotation in radians
@@ -28,11 +29,10 @@ func _on_launch_area_body_entered(body: Node2D):    # on small zone entered:
 	if usable == true:     # if you can use it
 		player.velocity.y = launchy   # set velocities to lengths of sides on triangle
 		player.velocity.x = launchx
-		print(launchx,launchy)
 		player.slowx = false     # changes a variable in the player script so that horizontal speed decreases at almost same speed as the pull of gravity on vertical speed (not very precise)
 		player.just_bounced = true # changes variable to say youve recently bounced
 		usable = false # makes it unusable
-		timer.start(0.1) # starts a 0.1 second timer
+		timer.start(bouncetime) # starts a 0.1 second timer
 
 func _on_second_area_body_entered(body: Node2D) -> void: # when bigger area entered:
 	in_area = true # change variable to show that
@@ -49,3 +49,5 @@ func _process(delta: float): # every frame:
 
 func _on_timer_timeout() -> void: # when prev mentioned timer ends:
 	player.just_bounced = false # change just bounced to false
+	player.slowxblock = false
+	player.slowx = false

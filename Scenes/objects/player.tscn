@@ -15,7 +15,6 @@ var slowx = true   # variable on whether to slow how fast horizontal speed decre
 var just_bounced = false # variable to say youve recently bounced
 var slowxblock = false
 func _physics_process(delta: float) -> void: # every frame:
-	print(velocity)
 	if not is_on_floor(): # in in air:
 		if jump_available == true: #if you could have jumped while on the floor /// fell off ledge instead of jumping
 			get_tree().create_timer(COYOTE_TIME).timeout.connect(Coyote_timout) # create a timer for coyote time variable
@@ -32,7 +31,7 @@ func _physics_process(delta: float) -> void: # every frame:
 	var direction := Input.get_axis(\"left\", \"right\") # if left or right buttons pressed:
 	if direction: # if direction pressed:
 		if just_bounced == true: # if timer from launcher has not ended:
-			pass                 # block you from moving (stops player from cancelling all horizontal momentum accidentally after bouncing
+			velocity.x = move_toward(velocity.x, 0, SPEEDLOSS)                 # block you from moving (stops player from cancelling all horizontal momentum accidentally after bouncing
 		else: # if you have not just bounced or the timer ended:
 			velocity.x = direction * SPEED # then move in the direction you pressed
 	elif slowx == false: # if prev mentioned slowx variable is false:

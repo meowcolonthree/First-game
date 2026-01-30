@@ -7,8 +7,6 @@ var score = 0
 @onready var coins: Node = $"../Coins"
 @onready var coin_total = coins.get_child_count()
 
-func _ready() -> void:
-	print(coin_total)
 func add_point_UI():
 	score += 1
 	if score == 1 and first_collected == false:
