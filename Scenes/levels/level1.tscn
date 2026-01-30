@@ -14,7 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://bnapf4750s4af" path="res://Scenes/objects/launcher.tscn" id="12_2vma4"]
 [ext_resource type="PackedScene" uid="uid://dghsigr17oyee" path="res://Scenes/objects/next_level.tscn" id="13_wrykp"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k7wc3"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wrykp"]
 texture = ExtResource("4_4hiyj")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -178,7 +178,7 @@ texture = ExtResource("4_4hiyj")
 
 [sub_resource type="TileSet" id="TileSet_3dryh"]
 physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_k7wc3")
+sources/0 = SubResource("TileSetAtlasSource_wrykp")
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_1l0tm"]
 
@@ -275,7 +275,7 @@ metadata/_edit_use_anchors_ = true
 [node name="Timer" type="Timer" parent="GameManager" unique_id=426114220]
 
 [node name="NextLevel" parent="GameManager" unique_id=646615910 instance=ExtResource("13_wrykp")]
-position = Vector2(28, -46)
+position = Vector2(927, -207)
 
 [node name="Tilemap" type="TileMapLayer" parent="." unique_id=1223144264]
 tile_set = SubResource("TileSet_3dryh")
@@ -306,7 +306,7 @@ position = Vector2(-34, -21)
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=1058192047]
 position = Vector2(1, -6)
-zoom = Vector2(3, 3)
+zoom = Vector2(5, 5)
 limit_left = -9999916
 limit_top = -9999995
 limit_right = 10000084
@@ -341,13 +341,13 @@ position = Vector2(497.41357, 4.503734)
 [node name="Coins" type="Node" parent="." unique_id=1144429970]
 
 [node name="Coin" parent="Coins" unique_id=1814933934 instance=ExtResource("10_3msvw")]
-position = Vector2(41, -30)
+position = Vector2(1, 90)
 
 [node name="Coin2" parent="Coins" unique_id=281398775 instance=ExtResource("10_3msvw")]
-position = Vector2(18, -34)
+position = Vector2(210, -30)
 
 [node name="Coin3" parent="Coins" unique_id=1208661617 instance=ExtResource("10_3msvw")]
-position = Vector2(56, -35)
+position = Vector2(406, -294)
 
 [node name="Signs" type="Node" parent="." unique_id=551537307]
 
@@ -364,14 +364,8 @@ shape = SubResource("RectangleShape2D_h4fw4")
 
 [node name="Launchers" type="Node" parent="." unique_id=1078786138]
 
-[node name="Launcher" parent="Launchers" unique_id=1076933528 instance=ExtResource("12_2vma4")]
-position = Vector2(-183, -13)
-launch = 1000
-rotdegree = 45.0
-bouncetime = 5.0
-
 [node name="Launcher2" parent="Launchers" unique_id=373807895 instance=ExtResource("12_2vma4")]
-position = Vector2(680, 6)
+position = Vector2(674, 6)
 launch = 875
 
 [node name="Plain Text" type="Node" parent="." unique_id=262292838]

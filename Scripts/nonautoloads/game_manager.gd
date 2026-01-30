@@ -19,6 +19,7 @@ func add_point_UI():
 	
 func final_score():
 	if score == coin_total:
+		next_level.works = true
 		end_total.text = "You collected all " + str(score) + " of the " + str(coin_total) + " coins!\nYou win!"
 		next_level.visible = true
 	else:

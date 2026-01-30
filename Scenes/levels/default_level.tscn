@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://b3hjlgmu1lcvb" path="res://Scenes/objects/player.tscn" id="6_jh1ia"]
 [ext_resource type="PackedScene" uid="uid://btvetxn3a0nfn" path="res://Scenes/mechanics/killzone.tscn" id="7_77tho"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k7wc3"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0n8kf"]
 texture = ExtResource("5_inij4")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -170,19 +170,19 @@ texture = ExtResource("5_inij4")
 2:4/size_in_atlas = Vector2i(3, 3)
 2:4/0 = 0
 
-[sub_resource type="TileSet" id="TileSet_3dryh"]
+[sub_resource type="TileSet" id="TileSet_y7btt"]
 physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_k7wc3")
+sources/0 = SubResource("TileSetAtlasSource_0n8kf")
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_1l0tm"]
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_inij4"]
 
-[node name="DefaultLevel" type="Node2D" unique_id=1651352025]
+[node name="Default" type="Node2D" unique_id=18359310]
 
-[node name="GameManager" type="Node" parent="." unique_id=1367341058]
+[node name="GameManager" type="Node" parent="." unique_id=2078097169]
 unique_name_in_owner = true
 script = ExtResource("1_q5jhn")
 
-[node name="End total" type="Label" parent="GameManager" unique_id=1451568565]
+[node name="End total" type="Label" parent="GameManager" unique_id=1422089777]
 offset_left = 804.0
 offset_top = -226.0
 offset_right = 856.0
@@ -193,9 +193,9 @@ text = "You collected 0 coins
 LOSER"
 metadata/_edit_use_anchors_ = true
 
-[node name="CanvasLayer" type="CanvasLayer" parent="GameManager" unique_id=1427634857]
+[node name="CanvasLayer" type="CanvasLayer" parent="GameManager" unique_id=955277121]
 
-[node name="ScoreLabel" type="Label" parent="GameManager/CanvasLayer" unique_id=1712537109]
+[node name="ScoreLabel" type="Label" parent="GameManager/CanvasLayer" unique_id=1306323410]
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -209,37 +209,37 @@ theme_override_font_sizes/font_size = 16
 text = "You have 0 coins"
 metadata/_edit_use_anchors_ = true
 
-[node name="Timer" type="Timer" parent="GameManager" unique_id=426114220]
+[node name="Timer" type="Timer" parent="GameManager" unique_id=664374638]
 
 [node name="NextLevel" parent="GameManager" unique_id=646615910 instance=ExtResource("4_y7btt")]
-position = Vector2(28, -46)
+position = Vector2(927, -207)
 
-[node name="Tilemap" type="TileMapLayer" parent="." unique_id=1223144264]
-tile_set = SubResource("TileSet_3dryh")
+[node name="Tilemap" type="TileMapLayer" parent="." unique_id=1739052133]
+tile_set = SubResource("TileSet_y7btt")
 
-[node name="Background" type="TileMapLayer" parent="Tilemap" unique_id=2048291644]
+[node name="Background" type="TileMapLayer" parent="Tilemap" unique_id=523025336]
 z_index = -2
-tile_set = SubResource("TileSet_3dryh")
+tile_set = SubResource("TileSet_y7btt")
 collision_enabled = false
 
-[node name="MidGround" type="TileMapLayer" parent="Tilemap" unique_id=96485006]
-tile_set = SubResource("TileSet_3dryh")
+[node name="MidGround" type="TileMapLayer" parent="Tilemap" unique_id=1707157180]
+tile_set = SubResource("TileSet_y7btt")
 
-[node name="BackgroundCloser" type="TileMapLayer" parent="Tilemap" unique_id=865013143]
+[node name="BackgroundCloser" type="TileMapLayer" parent="Tilemap" unique_id=1395239500]
 z_index = -1
-tile_set = SubResource("TileSet_3dryh")
+tile_set = SubResource("TileSet_y7btt")
 
-[node name="Foreground" type="TileMapLayer" parent="Tilemap" unique_id=1510146505]
+[node name="Foreground" type="TileMapLayer" parent="Tilemap" unique_id=1417935737]
 z_index = 6
-tile_set = SubResource("TileSet_3dryh")
+tile_set = SubResource("TileSet_y7btt")
 
 [node name="Player" parent="." unique_id=1905880579 instance=ExtResource("6_jh1ia")]
 unique_name_in_owner = true
 position = Vector2(-34, -21)
 
-[node name="Camera2D" type="Camera2D" parent="Player" unique_id=1058192047]
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=618559790]
 position = Vector2(1, -6)
-zoom = Vector2(3, 3)
+zoom = Vector2(5, 5)
 limit_left = -9999916
 limit_top = -9999995
 limit_right = 10000084
@@ -250,18 +250,18 @@ position_smoothing_enabled = true
 [node name="DeathPlain" parent="." unique_id=1086638232 instance=ExtResource("7_77tho")]
 position = Vector2(-103, 96)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathPlain" unique_id=1872302093]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathPlain" unique_id=1779216022]
 position = Vector2(0, 24)
-shape = SubResource("WorldBoundaryShape2D_1l0tm")
+shape = SubResource("WorldBoundaryShape2D_inij4")
 
-[node name="Platforms" type="Node" parent="." unique_id=1133965956]
+[node name="Platforms" type="Node" parent="." unique_id=544289061]
 
-[node name="Coins" type="Node" parent="." unique_id=1144429970]
+[node name="Coins" type="Node" parent="." unique_id=1994813166]
 
-[node name="Signs" type="Node" parent="." unique_id=551537307]
+[node name="Signs" type="Node" parent="." unique_id=1217342309]
 
-[node name="Teleports" type="Node" parent="." unique_id=1997390909]
+[node name="Teleports" type="Node" parent="." unique_id=942838332]
 
-[node name="Launchers" type="Node" parent="." unique_id=1078786138]
+[node name="Launchers" type="Node" parent="." unique_id=1599413864]
 
-[node name="Plain Text" type="Node" parent="." unique_id=262292838]
+[node name="Plain Text" type="Node" parent="." unique_id=1225969783]

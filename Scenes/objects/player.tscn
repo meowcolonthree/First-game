@@ -5,7 +5,8 @@
 [sub_resource type="GDScript" id="GDScript_v0iea"]
 resource_name = "player"
 script/source = "extends CharacterBody2D
-
+@onready var timer: Timer = $Timer
+@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 const SPEEDLOSS = 7.6 # loss of horizontal speed after bouncing
 const SPEED = 150  # speed of player
 const JUMP_VELOCITY = -350 # how high player jumps
@@ -14,6 +15,7 @@ var jump_available:bool = true # whether jump is available
 var slowx = true   # variable on whether to slow how fast horizontal speed decreases to at almost same speed as the pull of gravity on vertical speed (not very precise)
 var just_bounced = false # variable to say youve recently bounced
 var slowxblock = false
+var jumping = false
 func _physics_process(delta: float) -> void: # every frame:
 	if not is_on_floor(): # in in air:
 		if jump_available == true: #if you could have jumped while on the floor /// fell off ledge instead of jumping
@@ -27,8 +29,21 @@ func _physics_process(delta: float) -> void: # every frame:
 	if Input.is_action_just_pressed(\"jump\") and jump_available: # if jump button pressed while jump available:
 		velocity.y = JUMP_VELOCITY # set vertical speed to jump height
 		jump_available = false # stop from jumping again
-
+		animated_sprite.play(\"jump\")
+		jumping = true
+		timer.start()
 	var direction := Input.get_axis(\"left\", \"right\") # if left or right buttons pressed:
+	if is_on_floor() == false and jumping == false:
+		animated_sprite.play(\"fall\")
+	elif direction < 0 and jumping == false:
+		animated_sprite.play(\"run\")
+		animated_sprite.flip_h = true
+	elif direction > 0 and jumping == false:
+		animated_sprite.flip_h = false
+		animated_sprite.play(\"run\")
+	elif direction == 0 and jumping == false:
+		animated_sprite.play(\"idle\")
+
 	if direction: # if direction pressed:
 		if just_bounced == true: # if timer from launcher has not ended:
 			velocity.x = move_toward(velocity.x, 0, SPEEDLOSS)                 # block you from moving (stops player from cancelling all horizontal momentum accidentally after bouncing
@@ -43,7 +58,15 @@ func _physics_process(delta: float) -> void: # every frame:
 
 func Coyote_timout(): # when coyote timer ends
 	jump_available = false # stop you from jumping, allows you to jump even if you time your jump wrong
+
+
+func _on_animated_sprite_2d_animation_finished():
+	jumping = false
 "
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a2cv8"]
+atlas = ExtResource("1_v0iea")
+region = Rect2(64, 160, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cvnsp"]
 atlas = ExtResource("1_v0iea")
@@ -61,8 +84,112 @@ region = Rect2(64, 0, 32, 32)
 atlas = ExtResource("1_v0iea")
 region = Rect2(96, 0, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_87muf"]
+atlas = ExtResource("1_v0iea")
+region = Rect2(0, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e5rbe"]
+atlas = ExtResource("1_v0iea")
+region = Rect2(32, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5xgka"]
+atlas = ExtResource("1_v0iea")
+region = Rect2(64, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yku0x"]
+atlas = ExtResource("1_v0iea")
+region = Rect2(96, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ver7f"]
+atlas = ExtResource("1_v0iea")
+region = Rect2(128, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aw1ni"]
+atlas = ExtResource("1_v0iea")
+region = Rect2(160, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_olcn7"]
+atlas = ExtResource("1_v0iea")
+region = Rect2(192, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wrqbp"]
+atlas = ExtResource("1_v0iea")
+region = Rect2(224, 160, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_718o8"]
+atlas = ExtResource("1_v0iea")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_knc1s"]
+atlas = ExtResource("1_v0iea")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_imfct"]
+atlas = ExtResource("1_v0iea")
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i2eev"]
+atlas = ExtResource("1_v0iea")
+region = Rect2(96, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wofjy"]
+atlas = ExtResource("1_v0iea")
+region = Rect2(128, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yoyuo"]
+atlas = ExtResource("1_v0iea")
+region = Rect2(160, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p1f5d"]
+atlas = ExtResource("1_v0iea")
+region = Rect2(192, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_13fij"]
+atlas = ExtResource("1_v0iea")
+region = Rect2(224, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o3yr2"]
+atlas = ExtResource("1_v0iea")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tlk3v"]
+atlas = ExtResource("1_v0iea")
+region = Rect2(32, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t8tj2"]
+atlas = ExtResource("1_v0iea")
+region = Rect2(64, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e2gi8"]
+atlas = ExtResource("1_v0iea")
+region = Rect2(96, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4nw1q"]
+atlas = ExtResource("1_v0iea")
+region = Rect2(128, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7rpj4"]
+atlas = ExtResource("1_v0iea")
+region = Rect2(160, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0imc8"]
+atlas = ExtResource("1_v0iea")
+region = Rect2(192, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3h4qy"]
+atlas = ExtResource("1_v0iea")
+region = Rect2(224, 96, 32, 32)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_x3wgy"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a2cv8")
+}],
+"loop": true,
+"name": &"fall",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_cvnsp")
@@ -77,7 +204,89 @@ animations = [{
 "texture": SubResource("AtlasTexture_fkybt")
 }],
 "loop": true,
-"name": &"default",
+"name": &"idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_87muf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e5rbe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5xgka")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yku0x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ver7f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aw1ni")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_olcn7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wrqbp")
+}],
+"loop": false,
+"name": &"jump",
+"speed": 16.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_718o8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_knc1s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_imfct")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i2eev")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wofjy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yoyuo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p1f5d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_13fij")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o3yr2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tlk3v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t8tj2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e2gi8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4nw1q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7rpj4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0imc8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3h4qy")
+}],
+"loop": true,
+"name": &"run",
 "speed": 10.0
 }]
 
@@ -92,8 +301,8 @@ script = SubResource("GDScript_v0iea")
 z_index = 5
 position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_x3wgy")
-autoplay = "default"
-frame_progress = 0.3800412
+animation = &"fall"
+autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=598137743]
 visibility_layer = 4
@@ -111,4 +320,5 @@ shape = SubResource("CircleShape2D_3smsa")
 wait_time = 0.2
 one_shot = true
 
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
