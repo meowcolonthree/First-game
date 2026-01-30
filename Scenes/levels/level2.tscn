@@ -1,21 +1,20 @@
-[gd_scene format=4 uid="uid://c66f2tiagg1sr"]
+[gd_scene format=4 uid="uid://dr7jwuwnxmle0"]
 
-[ext_resource type="Script" uid="uid://eb132f18x65c" path="res://Scripts/nonautoloads/game_manager.gd" id="1_1p2rh"]
-[ext_resource type="FontFile" uid="uid://jgv88f60q8tg" path="res://Assets/fonts/PixelOperator8.ttf" id="2_wrykp"]
-[ext_resource type="FontFile" uid="uid://cuhjqidghnmi2" path="res://Assets/fonts/PixelOperator8-Bold.ttf" id="3_qnnww"]
-[ext_resource type="Texture2D" uid="uid://dtdncmd6dus80" path="res://Assets/sprites/world_tileset.png" id="4_4hiyj"]
-[ext_resource type="PackedScene" uid="uid://b3hjlgmu1lcvb" path="res://Scenes/objects/player.tscn" id="5_oxu8x"]
-[ext_resource type="PackedScene" uid="uid://btvetxn3a0nfn" path="res://Scenes/mechanics/killzone.tscn" id="6_as02b"]
-[ext_resource type="PackedScene" uid="uid://cbjxjfye3uws0" path="res://Scenes/objects/grass_platform_still.tscn" id="7_bpdo2"]
-[ext_resource type="PackedScene" uid="uid://cn8vw5ni6x2ab" path="res://Scenes/objects/secret_platform.tscn" id="8_aimf2"]
-[ext_resource type="PackedScene" uid="uid://b1ewgknvxs18s" path="res://Scenes/objects/grass_platform_move.tscn" id="9_2mxby"]
-[ext_resource type="PackedScene" uid="uid://4y0iag1d8ktc" path="res://Scenes/objects/coin.tscn" id="10_3msvw"]
-[ext_resource type="PackedScene" uid="uid://bkwxbqqnse031" path="res://Scenes/mechanics/sign.tscn" id="11_gigfr"]
-[ext_resource type="PackedScene" uid="uid://bnapf4750s4af" path="res://Scenes/objects/launcher.tscn" id="12_2vma4"]
-[ext_resource type="PackedScene" uid="uid://dghsigr17oyee" path="res://Scenes/objects/next_level.tscn" id="13_wrykp"]
+[ext_resource type="Texture2D" uid="uid://dtdncmd6dus80" path="res://Assets/sprites/world_tileset.png" id="1_e0h1l"]
+[ext_resource type="Script" uid="uid://eb132f18x65c" path="res://Scripts/nonautoloads/game_manager.gd" id="2_w7nad"]
+[ext_resource type="FontFile" uid="uid://jgv88f60q8tg" path="res://Assets/fonts/PixelOperator8.ttf" id="3_eloyq"]
+[ext_resource type="FontFile" uid="uid://cuhjqidghnmi2" path="res://Assets/fonts/PixelOperator8-Bold.ttf" id="4_782v1"]
+[ext_resource type="PackedScene" uid="uid://b3hjlgmu1lcvb" path="res://Scenes/objects/player.tscn" id="5_sjedw"]
+[ext_resource type="PackedScene" uid="uid://4y0iag1d8ktc" path="res://Scenes/objects/coin.tscn" id="6_eloyq"]
+[ext_resource type="PackedScene" uid="uid://btvetxn3a0nfn" path="res://Scenes/mechanics/killzone.tscn" id="6_fg74y"]
+[ext_resource type="PackedScene" uid="uid://cbjxjfye3uws0" path="res://Scenes/objects/grass_platform_still.tscn" id="7_y05r8"]
+[ext_resource type="PackedScene" uid="uid://cn8vw5ni6x2ab" path="res://Scenes/objects/secret_platform.tscn" id="8_oh6hf"]
+[ext_resource type="PackedScene" uid="uid://b1ewgknvxs18s" path="res://Scenes/objects/grass_platform_move.tscn" id="9_pjwhy"]
+[ext_resource type="PackedScene" uid="uid://bkwxbqqnse031" path="res://Scenes/mechanics/sign.tscn" id="11_pudda"]
+[ext_resource type="PackedScene" uid="uid://bnapf4750s4af" path="res://Scenes/objects/launcher.tscn" id="12_muxm6"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k7wc3"]
-texture = ExtResource("4_4hiyj")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_26deu"]
+texture = ExtResource("1_e0h1l")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:0/0 = 0
@@ -178,7 +177,7 @@ texture = ExtResource("4_4hiyj")
 
 [sub_resource type="TileSet" id="TileSet_3dryh"]
 physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_k7wc3")
+sources/0 = SubResource("TileSetAtlasSource_26deu")
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_1l0tm"]
 
@@ -243,18 +242,17 @@ size = Vector2(78.95795, 61.169662)
 
 [node name="GameManager" type="Node" parent="." unique_id=1367341058]
 unique_name_in_owner = true
-script = ExtResource("1_1p2rh")
+script = ExtResource("2_w7nad")
 
 [node name="End total" type="Label" parent="GameManager" unique_id=1451568565]
 offset_left = 804.0
 offset_top = -226.0
 offset_right = 856.0
 offset_bottom = -203.0
-theme_override_fonts/font = ExtResource("2_wrykp")
+theme_override_fonts/font = ExtResource("3_eloyq")
 theme_override_font_sizes/font_size = 8
 text = "You collected 0 coins
 LOSER"
-metadata/_edit_use_anchors_ = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="GameManager" unique_id=1427634857]
 
@@ -267,15 +265,11 @@ offset_right = 228.0
 grow_vertical = 0
 size_flags_horizontal = 0
 size_flags_vertical = 0
-theme_override_fonts/font = ExtResource("3_qnnww")
+theme_override_fonts/font = ExtResource("4_782v1")
 theme_override_font_sizes/font_size = 16
 text = "You have 0 coins"
-metadata/_edit_use_anchors_ = true
 
 [node name="Timer" type="Timer" parent="GameManager" unique_id=426114220]
-
-[node name="NextLevel" parent="GameManager" unique_id=646615910 instance=ExtResource("13_wrykp")]
-position = Vector2(28, -46)
 
 [node name="Tilemap" type="TileMapLayer" parent="." unique_id=1223144264]
 tile_set = SubResource("TileSet_3dryh")
@@ -300,7 +294,7 @@ z_index = 6
 tile_map_data = PackedByteArray("AAAPAPX/AAACAAgAAAAPAPP/AAACAAQAAAAMAPX/AAAAAAUAAAAMAPT/AAAAAAMAAAA=")
 tile_set = SubResource("TileSet_3dryh")
 
-[node name="Player" parent="." unique_id=1905880579 instance=ExtResource("5_oxu8x")]
+[node name="Player" parent="." unique_id=1905880579 instance=ExtResource("5_sjedw")]
 unique_name_in_owner = true
 position = Vector2(-34, -21)
 
@@ -314,7 +308,7 @@ limit_bottom = 105
 limit_smoothed = true
 position_smoothing_enabled = true
 
-[node name="DeathPlain" parent="." unique_id=1086638232 instance=ExtResource("6_as02b")]
+[node name="DeathPlain" parent="." unique_id=1086638232 instance=ExtResource("6_fg74y")]
 position = Vector2(-103, 96)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeathPlain" unique_id=1872302093]
@@ -323,35 +317,35 @@ shape = SubResource("WorldBoundaryShape2D_1l0tm")
 
 [node name="Platforms" type="Node" parent="." unique_id=1133965956]
 
-[node name="GrassPlatformStill" parent="Platforms" unique_id=197908425 instance=ExtResource("7_bpdo2")]
+[node name="GrassPlatformStill" parent="Platforms" unique_id=197908425 instance=ExtResource("7_y05r8")]
 position = Vector2(51, -71)
 
-[node name="GrassPlatformStill2" parent="Platforms" unique_id=632328101 instance=ExtResource("7_bpdo2")]
+[node name="GrassPlatformStill2" parent="Platforms" unique_id=632328101 instance=ExtResource("7_y05r8")]
 position = Vector2(51, -133)
 
-[node name="SecretPlatform" parent="Platforms" unique_id=686670940 instance=ExtResource("8_aimf2")]
+[node name="SecretPlatform" parent="Platforms" unique_id=686670940 instance=ExtResource("8_oh6hf")]
 position = Vector2(255, 108)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Platforms/SecretPlatform" unique_id=992333290]
 libraries/ = SubResource("AnimationLibrary_h4fw4")
 
-[node name="Moving Platform" parent="Platforms" unique_id=522808172 instance=ExtResource("9_2mxby")]
+[node name="Moving Platform" parent="Platforms" unique_id=522808172 instance=ExtResource("9_pjwhy")]
 position = Vector2(497.41357, 4.503734)
 
 [node name="Coins" type="Node" parent="." unique_id=1144429970]
 
-[node name="Coin" parent="Coins" unique_id=1814933934 instance=ExtResource("10_3msvw")]
-position = Vector2(41, -30)
+[node name="Coin" parent="Coins" unique_id=1814933934 instance=ExtResource("6_eloyq")]
+position = Vector2(209, -31)
 
-[node name="Coin2" parent="Coins" unique_id=281398775 instance=ExtResource("10_3msvw")]
-position = Vector2(18, -34)
+[node name="Coin2" parent="Coins" unique_id=281398775 instance=ExtResource("6_eloyq")]
+position = Vector2(0, 90)
 
-[node name="Coin3" parent="Coins" unique_id=1208661617 instance=ExtResource("10_3msvw")]
-position = Vector2(56, -35)
+[node name="Coin3" parent="Coins" unique_id=1208661617 instance=ExtResource("6_eloyq")]
+position = Vector2(470, -294)
 
 [node name="Signs" type="Node" parent="." unique_id=551537307]
 
-[node name="Sign" parent="Signs" unique_id=462426388 instance=ExtResource("11_gigfr")]
+[node name="Sign" parent="Signs" unique_id=462426388 instance=ExtResource("11_pudda")]
 position = Vector2(443, -273)
 initial_text = "E to read"
 read_text = "gay as hell"
@@ -364,15 +358,16 @@ shape = SubResource("RectangleShape2D_h4fw4")
 
 [node name="Launchers" type="Node" parent="." unique_id=1078786138]
 
-[node name="Launcher" parent="Launchers" unique_id=1076933528 instance=ExtResource("12_2vma4")]
+[node name="Launcher" parent="Launchers" unique_id=1076933528 instance=ExtResource("12_muxm6")]
 position = Vector2(-183, -13)
 launch = 1000
 rotdegree = 45.0
 bouncetime = 5.0
 
-[node name="Launcher2" parent="Launchers" unique_id=373807895 instance=ExtResource("12_2vma4")]
+[node name="Launcher2" parent="Launchers" unique_id=373807895 instance=ExtResource("12_muxm6")]
 position = Vector2(680, 6)
 launch = 875
+bouncetime = 0.0
 
 [node name="Plain Text" type="Node" parent="." unique_id=262292838]
 
@@ -381,8 +376,7 @@ offset_left = 603.0
 offset_top = -72.0
 offset_right = 643.0
 offset_bottom = -49.0
-theme_override_fonts/font = ExtResource("3_qnnww")
+theme_override_fonts/font = ExtResource("4_782v1")
 text = "->"
 horizontal_alignment = 1
 vertical_alignment = 1
-metadata/_edit_use_anchors_ = true
